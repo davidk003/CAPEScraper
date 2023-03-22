@@ -1,353 +1,353 @@
-
-<!doctype html>
-<html class="no-js" lang="en-US">
-<head>
-    <title>SINGLE SIGN-ON</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <meta name="robots" content="noindex,nofollow,noarchive">
-    <meta name="ORGANIZATION" content="University of California, San Diego">
-    <meta name="SITE" content="SINGLE SIGN-ON">
-    <meta name="PAGETITLE" content="SINGLE SIGN-ON">
-    <meta name="DESCRIPTION" content="SINGLE SIGN-ON">
-
-    <link rel="stylesheet" href="/tritON/styles/bootstrap.css"/>
-
-    <link rel="stylesheet" href="/tritON/styles/base.css"/>
-
-    <link rel="stylesheet" href="/tritON/styles/sso.css"/>
-
-    <!--[if lt IE 9]>
-    <link rel="stylesheet" href="/tritON/styles/ie-support.css"/>
-    <![endif]-->
-
-    <!-- Begin site-specific CSS files -->
-    <!-- End site-specific CSS files -->
-
-    <script src="/tritON/modernizr.js"></script>
-
-    <!--[if lt IE 9]>
-    <script src="/tritON/scripts/respond.min.js"></script>
-    <link href="https://cdn.ucsd.edu/cms/decorator-4/scripts/cross-domain/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
-    <link href="/tritON/img/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
-    <script src="/tritON/scripts/respond-proxy.js"></script>
-    <![endif]-->
-</head>
-<body >
-<header class="layout-header">
-    <a class="sr-only" href="#main-content">Skip to main content</a>
-    <div id="uc-emergency"></div>
-
-    <section class="layout-title">
-        <div class="layout-container">
-            <button class="btn-nav">
-                <span class="sr-only">Toggle Navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-
-            <a href="index.html" class="title-header">SINGLE SIGN-ON</a>
-            <a href="index.html" class="title-header title-header-short">SINGLE SIGN-ON</a>
-
-            <a href="https://www.ucsd.edu" class="title-logo">UC San Diego</a>
-        </div>
-    </section>
-</header>
-
-<nav class="navdrawer-container layout-navbar" role="navigation">
-    <div class="layout-container">
-
-        <div class="search">
-            <button class="search-toggle btn-default">
-                <span class="glyphicon glyphicon-search"></span><span class="caret"></span>
-            </button>
-
-            <div class="search-content">
-                <form action="https://act.ucsd.edu/cwp/tools/search-redir" method="get" id="cse-site-search">
-                    <select class="search-scope" name="search-scope">
-                        <option selected="selected" value="cascade-cwp">This Site</option>
-                        <option value="default_collection">All UCSD Sites</option>
-                        <option value="faculty-staff">Faculty/Staff</option>
-                    </select>
-
-                    <div class="input-group">
-                        <input placeholder="Search..." type="search" class="form-control search-term" id="q" name="search-term">
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <ul class="navbar-list">
-            <li class="active">
-                <a href="index.html">Home</a>
-            </li>
-        </ul>
-    </div>
-</nav>
-
-
-<main class="layout-main" id="main-content" role="main">
-    <div class="layout-container">
-
-
-        <section class="main-section">
-        
-                
-
-
-
-
-                        
-      
-                
-           
-   
-                 <h1 class="signing hidden-xs">Signing on Using: <span class="s-type">Student SSO</span>  </h1>
-    
-            
-            <div class="row">
-              <div class="col-sm-12 nopadding">
-
-                <div class="col-sm-7">
-
-                  <!-- Left Column -->
-
-         <div class="sso-screen">
-
-                    
-              <div class="col-sm-5 login-other">
-       		  <label class="hidden-xs">Or sign on with:</label>
-              <span class="visible-xs"><label>Sign on with:</label></span>
-          
-             <input type="hidden" id="compare-value" name="compare-value" value="authn/PasswordKrb" /> 
-            
-                              
-                
-           <form role="form" action="/tritON/profile/SAML2/Redirect/SSO?execution=e1s1" method="post" id="flowselect_form">
-           
-           		<input type="hidden" id="flowselect_action" value=""/>
-				<select id="authtype" onchange="flowselect_action.name = authtype.value; flowselect_form.submit()" tabindex="4">
-	            	              	              	                	                  <option 
-	                  		                  selected="true" 
-		              	                  value="_eventId_authn/PasswordKrb">
-	                    Student SSO	                 </option>
-	              	            	           	              	              	                	                  <option 
-	                  	                  value="_eventId_authn/PasswordRACF">
-	                    Business Systems	                 </option>
-	              	            	           	              	              	                	                  <option 
-	                  	                  value="_eventId_authn/PasswordAD">
-	                    Active Directory	                 </option>
-	              	            	                          </select>         		
-	       </form>
-	       <!--
-             <p class="make-default"><input name="rememberMe" id="rememberMe" type="checkbox" value="1" >
-               <label class="fnormal" for="rememberMe"> Make this my default</label>
-             </p>
-             -->
-                   
-                        </div>              
-                                  
-  
-            <div class="col-sm-7 login-option-select">
-
-            <form id="login" name="login" method="post" action="/tritON/profile/SAML2/Redirect/SSO?execution=e1s1" target="_self">
-
-                            <div class="form-group">
-                              <label for="ssousername">TritonLink user name</label>
-                              <input type="username" class="form-control" id="ssousername" name="urn:mace:ucsd.edu:sso:username" tabindex="1">
-                              <p class="log-options"><a tabindex="5" href="https://act.ucsd.edu/manage-sso/applicant" alt="First time user? " class="hidden-xs">First time user? </a></p>
-                            </div>
-
-                            <div class="form-group">
-                              <label for="ssopassword">Password:</label>
-                              <input type="password" class="form-control" id="ssopassword" name="urn:mace:ucsd.edu:sso:password" tabindex="2">
-                              <p class="log-options"><a tabindex="6" href="https://password.ucsd.edu" alt="Reset password" class="hidden-xs">Reset password</a></p>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary pull-right sso-button" name="_eventId_proceed" tabindex="3"
-                            	onClick="this.childNodes[0].nodeValue='Logging in, please wait...'"
-                 			>Login</button>
-
-                            <div class="row clearfix visible-xs">
-                              <div class="col-xs-12">
-                                <div class="col-xs-6 nopadding pull-left">
-                                  <p class="small-log"><a href="https://act.ucsd.edu/manage-sso/applicant" alt="First time user? " class="hidden-xs">First time user? </a></p>
-                                </div>
-                                <div class="col-xs-6 nopadding pull-right">
-                                  <p class="small-log"><a href="https://password.ucsd.edu" alt="Reset password" class="hidden-xs">Reset password</a></p>
-                                </div>
-                              </div>
-                            </div>
-
-                        </form>
-
-
-
-                      </div>
-
-
-                  </div>
-
-
-                </div>
-
-                <!--left col start -->
-
-                <div class="col-sm-5">
-
-                  <div class="sso-links">
-
-        	            <h3>Help</h3>
-
-        	                <ul>
-        	                   
-        	                           	                      <li><a tabindex="7" href="https://blink.ucsd.edu/technology/network/access/index.html">Learn about Passwords and Access</a></li>
-        	                       <li><a tabindex="8" href="http://blink.ucsd.edu/go/servicedesk">Contact the ITS Service Desk</a></li>        	
-        	                       <li><a tabindex="9" href="https://twostep.ucsd.edu">Enroll in Two-Step Login Now!</a></li>
-        	                       <!--
-        	                       <li><a tabindex="10" href="https://students.ucsd.edu/my-tritonlink/tools/">Alumni: Log in with Google/Microsoft/LinkedIn here</a></li>
-        	                       -->
-        	                           	                </ul>
-        	        </div>
-
-
-                </div>
-
-                <!--left col end -->
-
-              </div>
-            </div>
-                        <p class="tip"><span class="sso-info" title="information"></span>Sign out and close your browser when you're finished.</p>
-
-            <!-- Self Reg Screen Ends -->
-                
-        </section>
-    </div>
-</main>
-
-<footer class="layout-footer">
-    <section class="layout-container">
-        <article>
-            <span>
-                UC San Diego 9500 Gilman Dr. La Jolla, CA 92093 (858) 534-2230
-            </span>
-        </article>
-        <article>
-            <span>
-                Copyright © <span class="footer-copyright-year"></span> Regents of the University of California. All rights reserved.
-            </span>
-        </article>
-        <ul class="footer-links">
-            <li><a href="https://www.ucsd.edu/_about/legal/index.html">Terms &amp; Conditions</a></li>
-            <li><a href="mailto:shibsupport@ucsd.edu">Feedback</a></li>
-        </ul>
-    </section>
-</footer>
-
-<script src="/tritON/scripts/jquery.min.js"></script>
-<script src="/tritON/scripts/base-min.js"></script>
-
-<script type="text/javascript">
-    (function ($) {
-        $(document).ready(function () {
-        	$("#ssousername").focus();
-            initCopyright();
-            initLogout('http://www.ucsd.edu');
-            $('#rememberMe').change(function () {
-            	if (this.checked) {
-            	        		
-            		//document.cookie =  "userAuthenticator=" + authtype.value + ";" + "expires=" + maxAge + ";" + "path=/tritON"; 
-            		var userValue = $('#authtype').val(); 
-            		console.log('User Value ' + userValue);
-            		  setCookie("userAuthenticator",userValue,90);
-            	      
-                    
-            	} else {
-            		//alert('Clearing rememberme cookie here');
-            		  setCookie("userAuthenticator",'',0);
-            		  console.log('cookie cleared');
-            		   location.reload();
-            		   console.log('document reloaded');
-            		
-            		
-            	}
-            });
-            
-          
-             $(window).load(function() {
-                   var cookieName = getCookie("userAuthenticator");  
-                   if(cookieName){
-                       console.log(cookieName);
-                        $('#select_action').attr('value',cookieName);
-                           $('#select_action').attr('name',cookieName);
-                          $('#select_action').change();
-                        
-                    }
-               });
-               
-             $('#select_action').change(function() {
-                    $('#select_form').trigger('submit');
-                     console.log("submitting"); 
-             });
-        
-         
-            $('#select_form').submit(function(e) { 
-              var cookieName = getCookie("userAuthenticator"); 
-              var result = cookieName.replace('_eventId_',''); 
-                      console.log($('#compare-value').val());
-                      console.log("Result Value is " + result);                                    
-                        if ($('#compare-value').val() === result) {
-                              console.log("Compared values are equal");                        
-                              e.preventDefault();
-                               return;
-                        }   		
-             });
-           
-        
-          });
-        
-                  
-    })(jQuery);
-    
-</script>
-
-
-<script>
-function getCookie(cname) {
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-   
-    for(var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-}
-
-function setCookie(cname, cvalue, exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-    var expires = "expires="+d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/tritON";
-}
-
-</script>
-
-<script src="/tritON/scripts/vendor.js"></script>
-
-<script src="/tritON/scripts/bootstrap.js"></script>
-
-<script src="https://www.ucsd.edu/common/_emergency-broadcast/message.js"></script>
-<script src="https://www.google.com/cse/brand?form=cse-search-box&amp;lang=en"></script>
-
-</body>
-</html>
-
+
+<!doctype html>
+<html class="no-js" lang="en-US">
+<head>
+    <title>SINGLE SIGN-ON</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow,noarchive">
+    <meta name="ORGANIZATION" content="University of California, San Diego">
+    <meta name="SITE" content="SINGLE SIGN-ON">
+    <meta name="PAGETITLE" content="SINGLE SIGN-ON">
+    <meta name="DESCRIPTION" content="SINGLE SIGN-ON">
+
+    <link rel="stylesheet" href="/tritON/styles/bootstrap.css"/>
+
+    <link rel="stylesheet" href="/tritON/styles/base.css"/>
+
+    <link rel="stylesheet" href="/tritON/styles/sso.css"/>
+
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" href="/tritON/styles/ie-support.css"/>
+    <![endif]-->
+
+    <!-- Begin site-specific CSS files -->
+    <!-- End site-specific CSS files -->
+
+    <script src="/tritON/modernizr.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="/tritON/scripts/respond.min.js"></script>
+    <link href="https://cdn.ucsd.edu/cms/decorator-4/scripts/cross-domain/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
+    <link href="/tritON/img/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
+    <script src="/tritON/scripts/respond-proxy.js"></script>
+    <![endif]-->
+</head>
+<body >
+<header class="layout-header">
+    <a class="sr-only" href="#main-content">Skip to main content</a>
+    <div id="uc-emergency"></div>
+
+    <section class="layout-title">
+        <div class="layout-container">
+            <button class="btn-nav">
+                <span class="sr-only">Toggle Navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <a href="index.html" class="title-header">SINGLE SIGN-ON</a>
+            <a href="index.html" class="title-header title-header-short">SINGLE SIGN-ON</a>
+
+            <a href="https://www.ucsd.edu" class="title-logo">UC San Diego</a>
+        </div>
+    </section>
+</header>
+
+<nav class="navdrawer-container layout-navbar" role="navigation">
+    <div class="layout-container">
+
+        <div class="search">
+            <button class="search-toggle btn-default">
+                <span class="glyphicon glyphicon-search"></span><span class="caret"></span>
+            </button>
+
+            <div class="search-content">
+                <form action="https://act.ucsd.edu/cwp/tools/search-redir" method="get" id="cse-site-search">
+                    <select class="search-scope" name="search-scope">
+                        <option selected="selected" value="cascade-cwp">This Site</option>
+                        <option value="default_collection">All UCSD Sites</option>
+                        <option value="faculty-staff">Faculty/Staff</option>
+                    </select>
+
+                    <div class="input-group">
+                        <input placeholder="Search..." type="search" class="form-control search-term" id="q" name="search-term">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <ul class="navbar-list">
+            <li class="active">
+                <a href="index.html">Home</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+<main class="layout-main" id="main-content" role="main">
+    <div class="layout-container">
+
+
+        <section class="main-section">
+        
+                
+
+
+
+
+                        
+      
+                
+           
+   
+                 <h1 class="signing hidden-xs">Signing on Using: <span class="s-type">Student SSO</span>  </h1>
+    
+            
+            <div class="row">
+              <div class="col-sm-12 nopadding">
+
+                <div class="col-sm-7">
+
+                  <!-- Left Column -->
+
+         <div class="sso-screen">
+
+                    
+              <div class="col-sm-5 login-other">
+       		  <label class="hidden-xs">Or sign on with:</label>
+              <span class="visible-xs"><label>Sign on with:</label></span>
+          
+             <input type="hidden" id="compare-value" name="compare-value" value="authn/PasswordKrb" /> 
+            
+                              
+                
+           <form role="form" action="/tritON/profile/SAML2/Redirect/SSO?execution=e1s1" method="post" id="flowselect_form">
+           
+           		<input type="hidden" id="flowselect_action" value=""/>
+				<select id="authtype" onchange="flowselect_action.name = authtype.value; flowselect_form.submit()" tabindex="4">
+	            	              	              	                	                  <option 
+	                  		                  selected="true" 
+		              	                  value="_eventId_authn/PasswordKrb">
+	                    Student SSO	                 </option>
+	              	            	           	              	              	                	                  <option 
+	                  	                  value="_eventId_authn/PasswordRACF">
+	                    Business Systems	                 </option>
+	              	            	           	              	              	                	                  <option 
+	                  	                  value="_eventId_authn/PasswordAD">
+	                    Active Directory	                 </option>
+	              	            	                          </select>         		
+	       </form>
+	       <!--
+             <p class="make-default"><input name="rememberMe" id="rememberMe" type="checkbox" value="1" >
+               <label class="fnormal" for="rememberMe"> Make this my default</label>
+             </p>
+             -->
+                   
+                        </div>              
+                                  
+  
+            <div class="col-sm-7 login-option-select">
+
+            <form id="login" name="login" method="post" action="/tritON/profile/SAML2/Redirect/SSO?execution=e1s1" target="_self">
+
+                            <div class="form-group">
+                              <label for="ssousername">TritonLink user name</label>
+                              <input type="username" class="form-control" id="ssousername" name="urn:mace:ucsd.edu:sso:username" tabindex="1">
+                              <p class="log-options"><a tabindex="5" href="https://act.ucsd.edu/manage-sso/applicant" alt="First time user? " class="hidden-xs">First time user? </a></p>
+                            </div>
+
+                            <div class="form-group">
+                              <label for="ssopassword">Password:</label>
+                              <input type="password" class="form-control" id="ssopassword" name="urn:mace:ucsd.edu:sso:password" tabindex="2">
+                              <p class="log-options"><a tabindex="6" href="https://password.ucsd.edu" alt="Reset password" class="hidden-xs">Reset password</a></p>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary pull-right sso-button" name="_eventId_proceed" tabindex="3"
+                            	onClick="this.childNodes[0].nodeValue='Logging in, please wait...'"
+                 			>Login</button>
+
+                            <div class="row clearfix visible-xs">
+                              <div class="col-xs-12">
+                                <div class="col-xs-6 nopadding pull-left">
+                                  <p class="small-log"><a href="https://act.ucsd.edu/manage-sso/applicant" alt="First time user? " class="hidden-xs">First time user? </a></p>
+                                </div>
+                                <div class="col-xs-6 nopadding pull-right">
+                                  <p class="small-log"><a href="https://password.ucsd.edu" alt="Reset password" class="hidden-xs">Reset password</a></p>
+                                </div>
+                              </div>
+                            </div>
+
+                        </form>
+
+
+
+                      </div>
+
+
+                  </div>
+
+
+                </div>
+
+                <!--left col start -->
+
+                <div class="col-sm-5">
+
+                  <div class="sso-links">
+
+        	            <h3>Help</h3>
+
+        	                <ul>
+        	                   
+        	                           	                      <li><a tabindex="7" href="https://blink.ucsd.edu/technology/network/access/index.html">Learn about Passwords and Access</a></li>
+        	                       <li><a tabindex="8" href="http://blink.ucsd.edu/go/servicedesk">Contact the ITS Service Desk</a></li>        	
+        	                       <li><a tabindex="9" href="https://twostep.ucsd.edu">Enroll in Two-Step Login Now!</a></li>
+        	                       <!--
+        	                       <li><a tabindex="10" href="https://students.ucsd.edu/my-tritonlink/tools/">Alumni: Log in with Google/Microsoft/LinkedIn here</a></li>
+        	                       -->
+        	                           	                </ul>
+        	        </div>
+
+
+                </div>
+
+                <!--left col end -->
+
+              </div>
+            </div>
+                        <p class="tip"><span class="sso-info" title="information"></span>Sign out and close your browser when you're finished.</p>
+
+            <!-- Self Reg Screen Ends -->
+                
+        </section>
+    </div>
+</main>
+
+<footer class="layout-footer">
+    <section class="layout-container">
+        <article>
+            <span>
+                UC San Diego 9500 Gilman Dr. La Jolla, CA 92093 (858) 534-2230
+            </span>
+        </article>
+        <article>
+            <span>
+                Copyright © <span class="footer-copyright-year"></span> Regents of the University of California. All rights reserved.
+            </span>
+        </article>
+        <ul class="footer-links">
+            <li><a href="https://www.ucsd.edu/_about/legal/index.html">Terms &amp; Conditions</a></li>
+            <li><a href="mailto:shibsupport@ucsd.edu">Feedback</a></li>
+        </ul>
+    </section>
+</footer>
+
+<script src="/tritON/scripts/jquery.min.js"></script>
+<script src="/tritON/scripts/base-min.js"></script>
+
+<script type="text/javascript">
+    (function ($) {
+        $(document).ready(function () {
+        	$("#ssousername").focus();
+            initCopyright();
+            initLogout('http://www.ucsd.edu');
+            $('#rememberMe').change(function () {
+            	if (this.checked) {
+            	        		
+            		//document.cookie =  "userAuthenticator=" + authtype.value + ";" + "expires=" + maxAge + ";" + "path=/tritON"; 
+            		var userValue = $('#authtype').val(); 
+            		console.log('User Value ' + userValue);
+            		  setCookie("userAuthenticator",userValue,90);
+            	      
+                    
+            	} else {
+            		//alert('Clearing rememberme cookie here');
+            		  setCookie("userAuthenticator",'',0);
+            		  console.log('cookie cleared');
+            		   location.reload();
+            		   console.log('document reloaded');
+            		
+            		
+            	}
+            });
+            
+          
+             $(window).load(function() {
+                   var cookieName = getCookie("userAuthenticator");  
+                   if(cookieName){
+                       console.log(cookieName);
+                        $('#select_action').attr('value',cookieName);
+                           $('#select_action').attr('name',cookieName);
+                          $('#select_action').change();
+                        
+                    }
+               });
+               
+             $('#select_action').change(function() {
+                    $('#select_form').trigger('submit');
+                     console.log("submitting"); 
+             });
+        
+         
+            $('#select_form').submit(function(e) { 
+              var cookieName = getCookie("userAuthenticator"); 
+              var result = cookieName.replace('_eventId_',''); 
+                      console.log($('#compare-value').val());
+                      console.log("Result Value is " + result);                                    
+                        if ($('#compare-value').val() === result) {
+                              console.log("Compared values are equal");                        
+                              e.preventDefault();
+                               return;
+                        }   		
+             });
+           
+        
+          });
+        
+                  
+    })(jQuery);
+    
+</script>
+
+
+<script>
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+   
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/tritON";
+}
+
+</script>
+
+<script src="/tritON/scripts/vendor.js"></script>
+
+<script src="/tritON/scripts/bootstrap.js"></script>
+
+<script src="https://www.ucsd.edu/common/_emergency-broadcast/message.js"></script>
+<script src="https://www.google.com/cse/brand?form=cse-search-box&amp;lang=en"></script>
+
+</body>
+</html>
+
