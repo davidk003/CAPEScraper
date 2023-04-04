@@ -41,6 +41,7 @@ def loginPrompt():
 URL = "https://cape.ucsd.edu/responses/Results.aspx"
 browser = webdriver.Chrome()
 browser.get(URL)
+browser.implicitly_wait(20)
 
 while(not loginPrompt()):
     print(browser.find_element(By.ID, "_login_error_message").text)
@@ -107,14 +108,23 @@ while browser.current_url != "https://cape.ucsd.edu/responses/Results.aspx":
 print("CAPES SITE LOADED")
 
 # ASSUME CAPES SITE LOADED
-browser.implicitly_wait(20) # TRY USING THIS FOR ALL ABOVE WAITS/UNTILS
+# TRY USING THIS FOR ALL ABOVE WAITS/UNTILS
 # WebDriverWait(browser, 20).until(EC.element_to_be_clickable(browser.find_element(By.ID, "ContentPlaceHolder1_btnSubmit")))
 CAPEsearchButton = browser.find_element(By.ID, "ContentPlaceHolder1_btnSubmit")
 # WebDriverWait(browser, 20).until(EC.presence_of_element_located(browser.find_element(By.ID, "ContentPlaceHolder1_ddlDepartments")))
 departmentDropdown = Select(browser.find_element(By.ID, "ContentPlaceHolder1_ddlDepartments"))
 
+#Start writing to file
+output = open("capescraperoutput.txt", 'w')
+
+#Iterate over dropdown text
+for i in range(1, len(departmentDropdown.options)):
+    dropdownOption = departmentDropdown.options[i].get_attribute('text')
+    output.write(dropdownOption + "\n")
+    print(departmentDropdown.options[i].get_attribute('text'))
 
 
-
+output = open("capescraperoutput.txt", 'w')
+output.close()
 
 time.sleep(1000)
