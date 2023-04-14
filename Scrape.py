@@ -1,14 +1,14 @@
 #USE VENV FOR PYTHON OR OTHER ALTERNATIVE, NOT RUNNING CORRECTLY ON Ubuntu 22.04.2 LTS
 #TRY LOOKING INTO TKINTER FOR GUI INSTEAD OF GARBAGE TERMINAL INTERFACE
 from selenium import webdriver
+from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.support.select import Select # Used in dropdown to selections
 from selenium.webdriver.common.by import By
 import time # to wait for page loading
 import getpass # to conceal password
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
-
-
+    
 def loginPrompt():
     userNameField = browser.find_element(By.ID, "ssousername")
     userNameField.send_keys(input("Enter SSO username\n"))
@@ -41,7 +41,23 @@ def loginPrompt():
 
 
 URL = "https://cape.ucsd.edu/responses/Results.aspx"
-browser = webdriver.Chrome()
+
+try:
+    chromeOptions = webdriver.ChromeOptions()
+    chromeOptions.headless=True
+    browser = webdriver.Chrome(chrome_options=chromeOptions)
+    print("Using chrome binary")
+except WebDriverException:
+    try:
+        fireFoxOptions = webdriver.FirefoxOptions()
+        fireFoxOptions.set_headless()   
+        browser = webdriver.Firefox(firefox_options=fireFoxOptions)
+        print("Using firefox binary")
+    except:
+        print("chrome and firefox launch failure")
+
+
+
 browser.get(URL)
 browser.implicitly_wait(20)
 

@@ -1,0 +1,25 @@
+1681495680015	geckodriver	INFO	Listening on 127.0.0.1:59143
+1681495680477	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "43449" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile7KT28u"
+Gtk-Message: 11:08:00.496: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+amdgpu: os_same_file_description couldn't determine if two DRM fds reference the same file description.
+If they do, bad things may happen!
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1681495680975	Marionette	INFO	Marionette enabled
+1681495680978	Marionette	INFO	Listening on port 43833
+Read port: 43833
+WebDriver BiDi listening on ws://127.0.0.1:43449
+1681495681117	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofile7KT28u/search.json.mozlz4", (void 0)))
+[ERROR glean_core] Error setting metrics feature config: Json(Error("EOF while parsing a value", line: 1, column: 0))
+DevTools listening on ws://127.0.0.1:43449/devtools/browser/f88e0133-6c24-49d1-90ac-315443313980
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://a5.ucsd.edu."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://a5.ucsd.edu."
+JavaScript error: https://a5.ucsd.edu/tritON/scripts/base-min.js, line 6: TypeError: $(...).offset() is undefined
+1681495702215	Marionette	WARN	Ignoring event 'DOMContentLoaded' because document has an invalid readyState of 'complete'.
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://api-ce13a1a7.duosecurity.com."
