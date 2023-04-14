@@ -8,6 +8,7 @@ import time # to wait for page loading
 import getpass # to conceal password
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.chrome.options import Options
     
 def loginPrompt():
     userNameField = browser.find_element(By.ID, "ssousername")
@@ -42,15 +43,17 @@ def loginPrompt():
 
 URL = "https://cape.ucsd.edu/responses/Results.aspx"
 
+
 try:
-    chromeOptions = webdriver.ChromeOptions()
-    chromeOptions.headless=True
-    browser = webdriver.Chrome(chrome_options=chromeOptions)
+    options = webdriver.ChromeOptions()
+    options.binary_location="chrome.exe"
+    options.headless = True
+    browser = webdriver.Chrome(options=options)
     print("Using chrome binary")
 except WebDriverException:
     try:
         fireFoxOptions = webdriver.FirefoxOptions()
-        fireFoxOptions.set_headless()   
+        fireFoxOptions.headless= True   
         browser = webdriver.Firefox(firefox_options=fireFoxOptions)
         print("Using firefox binary")
     except:
