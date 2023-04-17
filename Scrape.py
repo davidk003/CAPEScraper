@@ -9,8 +9,29 @@ import getpass # to conceal password
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.chrome.options import Options
+
+#webdriver manager https://pypi.org/project/webdriver-manager/#use-with-firefox
+#Chrome imports
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
+
+#Chromium imports
+#from selenium.webdriver.chrome.service import Service as ChromiumService
+#from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.core.utils import ChromeType
+
+#Edge imports
+from selenium.webdriver.edge.service import Service as EdgeService
+from webdriver_manager.microsoft import EdgeChromiumDriverManager
+
+#Firefox imports
+from selenium.webdriver.firefox.service import Service as FirefoxService
+from webdriver_manager.firefox import GeckoDriverManager
+
+#Internet Explorer imports
+from selenium.webdriver.ie.service import Service as IEService
+from webdriver_manager.microsoft import IEDriverManager
+
     
 def loginPrompt():
     userNameField = browser.find_element(By.ID, "ssousername")
