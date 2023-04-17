@@ -9,6 +9,7 @@ import getpass # to conceal password
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
     
 def loginPrompt():
     userNameField = browser.find_element(By.ID, "ssousername")
@@ -43,12 +44,11 @@ def loginPrompt():
 
 URL = "https://cape.ucsd.edu/responses/Results.aspx"
 
-
+#browser = webdriver.Chrome()
 try:
-    options = webdriver.ChromeOptions()
-    options.binary_location="chrome.exe"
-    options.headless = True
-    browser = webdriver.Chrome(options=options)
+    chromeOption = webdriver.ChromeOptions()
+    chromeOption.add_argument("--headless=new")
+    browser = webdriver.Chrome(options=chromeOption)
     print("Using chrome binary")
 except WebDriverException:
     try:
