@@ -65,7 +65,6 @@ def loginPrompt():
 
 
 URL = "https://cape.ucsd.edu/responses/Results.aspx"
-
 #browser = webdriver.Chrome()
 try:
     chromeOption = webdriver.ChromeOptions()
@@ -75,9 +74,11 @@ try:
     print("Using chrome binary")
 except WebDriverException:
     try:
+        #dumbFireFoxProfile = webdriver.FirefoxProfile()
         fireFoxOptions = webdriver.FirefoxOptions()
-        fireFoxOptions.headless= True   
-        browser = webdriver.Firefox(firefox_options=fireFoxOptions)
+        fireFoxOptions.add_argument("-headless")
+        browser = webdriver.Firefox(options=fireFoxOptions)
+        #browser = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install(version="v0.33.0")),firefox_options=fireFoxOptions, firefox_profile=dumbFireFoxProfile)
         print("Using firefox binary")
     except:
         print("chrome and firefox launch failure")
@@ -146,11 +147,10 @@ else:
                 print("Incorrect passcode/generate a new passcode and try again")
                 #Spams message, fix later
 
-
 while browser.current_url != "https://cape.ucsd.edu/responses/Results.aspx":
     time.sleep(0.1)
 print("CAPES SITE LOADED")
-
+browser.switch_to.default_content()
 # ASSUME CAPES SITE LOADED
 # TRY USING THIS FOR ALL ABOVE WAITS/UNTILS
 # WebDriverWait(browser, 20).until(EC.element_to_be_clickable(browser.find_element(By.ID, "ContentPlaceHolder1_btnSubmit")))
