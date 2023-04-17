@@ -9,6 +9,7 @@ import getpass # to conceal password
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
     
 def loginPrompt():
@@ -48,7 +49,8 @@ URL = "https://cape.ucsd.edu/responses/Results.aspx"
 try:
     chromeOption = webdriver.ChromeOptions()
     chromeOption.add_argument("--headless=new")
-    browser = webdriver.Chrome(options=chromeOption)
+    #https://pypi.org/project/webdriver-manager/
+    browser = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()),options=chromeOption)
     print("Using chrome binary")
 except WebDriverException:
     try:
