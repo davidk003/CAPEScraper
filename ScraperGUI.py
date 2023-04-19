@@ -1,5 +1,18 @@
 from tkinter import *
 
-window = Tk()
+rootWindow = Tk()
+rootWindow.title("CAPEScraper")
+rootWindow.geometry((800,800))
 
-window.mainloop()
+
+rootFrame = Frame(rootWindow)
+rootButton = Button(rootFrame, text="test")
+
+
+
+
+
+
+
+
+rootWindow.mainloop()
