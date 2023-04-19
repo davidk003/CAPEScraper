@@ -167,6 +167,7 @@ for i in range(1, len(departmentDropdown.options)):
     output.write(dropdownOption + "\n")
     print(departmentDropdown.options[i].get_attribute('text'))
 
+print("END OF DROPDOWN")
 
 output = open("capescraperoutput.txt", 'w')
 output.close()
