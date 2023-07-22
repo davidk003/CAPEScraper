@@ -3,12 +3,14 @@ import json
 import os
 import selenium.webdriver.support.expected_conditions
 
+from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.support.select import Select # Used in dropdown to selections
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import NoSuchElementException
 from webdriver_manager.chrome import ChromeDriverManager
 
 def wait_for_page():
@@ -20,7 +22,7 @@ def wait_for_page():
             print(e)
         exit(1)
 
-
+scriptStartTime = time.time()
 chromeOptions = Options()
 chromeOptions.page_load_strategy = 'none' #Wont wait for page to load
 debugFlag = False
@@ -75,7 +77,7 @@ departmentCodes = []
 departmentFullName = []
 
 for i, department in enumerate(departmentSelection.options):
-    departmentCodes.append(department.get_attribute('value'))
+    departmentCodes.append(department.get_attribute('value').replace(" ", ""))
     departmentFullName.append(department.get_attribute('text'))
     #driver.find_element(By.ID, "ContentPlaceHolder1_btnSubmit").click()
 
@@ -107,42 +109,90 @@ except:
 
 originalWindow = driver.current_window_handle
 departmentCodeQueue = departmentCodes.copy()
+windowHandles = []
+progressCount = 0
 
 
-driver.switch_to.new_window('tab')
-driver.get(BASE_SEARCH_URL + departmentCodeQueue.pop(0))
-#Keep looping while queue not empty and length 
-while len(departmentCodeQueue)!=0 and len(driver.window_handles)!=1:
-    #add a new tab and search if under limit
-    while len(driver.window_handles) < 11 and len(departmentCodeQueue)>0:
-        driver.switch_to.new_window('tab')
-        driver.get(BASE_SEARCH_URL + departmentCodeQueue.pop(0))
-        print("Added window, current length: " + str(len(driver.window_handles)))
-    # Check all window handles (except original window), if ready harvest and close.
+#Load 10 windows
+for i in range(0, 10):
+    driver.switch_to.new_window('tab')
+    driver.current_window_handle
+    driver.get(BASE_SEARCH_URL + departmentCodeQueue.pop(0))
 
-    lenBeforeCheck = len(driver.window_handles)
-    windowIndex = 1
-    while(windowIndex < len(driver.window_handles)):
-        print("checked i: " + str(windowIndex) + "; windowhandles length: " + str(len(driver.window_handles)))
-        driver.switch_to.window(driver.window_handles[windowIndex])
+print("Extracting site html: ")
+#Loop until all windows processed
+while progressCount < len(departmentCodes):
+    #Loop through the 10 loaded tabs
+    for i in range(1, len(driver.window_handles)): #try 11 if len doesnt work
+        driver.switch_to.window(driver.window_handles[i])
         try:
             driver.find_element(By.ID, "ContentPlaceHolder1_gvCAPEs")
-            with open("CAPEdata/CAPE " + driver.current_url.replace(BASE_SEARCH_URL, '') + ".html", 'w') as file:
+            with open("CAPEdata/CAPE_" + driver.current_url.replace(BASE_SEARCH_URL, '') + ".html", 'w') as file:
                 file.write(driver.page_source)
-            driver.close()
-            #lenBeforeCheck-=1
-            print("window " + str(windowIndex) + " removed.")
+            if len(departmentCodeQueue) > 0:
+                driver.get(BASE_SEARCH_URL + departmentCodeQueue.pop())
+                progressCount+=1
+                print("Progress: " + str(progressCount) + "/" + str(len(departmentCodes)))
+            else:
+                break
         except:
-            print("window check/removal failed.")
-        windowIndex+=1
-    driver.switch_to.window(originalWindow)
-
-driver.switch_to.window(originalWindow)
-
+            print("Progress: " + str(progressCount) + "/" + str(len(departmentCodes)))
+            continue
+    if len(departmentCodeQueue) == 0:
+        for window in driver.window_handles:
+            if window != originalWindow:
+                try:
+                    driver.set_page_load_timeout(30)
+                    with open("CAPEdata/CAPE_" + driver.current_url.replace(BASE_SEARCH_URL, '') + ".html", 'w') as file:
+                        file.write(driver.page_source)
+                        progressCount+=1
+                        print("Progress: " + str(progressCount) + "/" + str(len(departmentCodes)))
+                        driver.close()
+                except:
+                    pass
+                    #print("Exceeded load time, rerun.")
+                    
     
 
 
+#Cleanup all windows except original
+for window in driver.window_handles:
+    if window != originalWindow:
+        driver.switch_to.window(window)
+        WebDriverWait(driver, timeout=120).until(selenium.webdriver.support.expected_conditions.presence_of_element_located((By.ID, "ContentPlaceHolder1_ddlDepartments")))
+        with open("CAPEdata/CAPE_" + driver.current_url.replace(BASE_SEARCH_URL, '') + ".html", 'w') as file:
+                file.write(driver.page_source)
+        driver.close()
+driver.switch_to.window(originalWindow)
+
+progressCount = 0
+print("Parsing html to extract data to csv:")
+try:
+    os.makedirs("CAPEcsv")
+except:
+    print("\"CAPEcsv\" directory creation failed or already exists.")
+for code in departmentCodes:
+    with open("CAPEdata/CAPE_" + code + ".html", 'r') as file:
+        soup = BeautifulSoup(file, 'html.parser')
+        #Check for failed harvest
+    with open("CAPEcsv/CAPE_" + code + ".csv", 'w') as file:
+        if len(soup.findAll(id="ContentPlaceHolder1_gvCAPEs_lblEmptyData")) != 0 or soup.table is None:
+                print("------ EMPTY DATA, TABLE GENERATION FAILED [" + file.name + "] ------")
+                file.write("empty")
+        else:
+            for i, string in enumerate(soup.table.stripped_strings):
+                if i % 10 == 0 : #Table/CSV header is 10 elements
+                    file.write("\n")
+                else:
+                    file.write(",")
+                file.write(string.replace("\n", ""))
+    progressCount+=1
+    print("Progress: " + str(progressCount) + "/" + str(len(departmentCodes)))
+
+
+
 print("End and sleep.")
+print("Time to completion: " + str(time.time()-scriptStartTime) + " seconds")
 
 time.sleep(100)
 driver.quit()
